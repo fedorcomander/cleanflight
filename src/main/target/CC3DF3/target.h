@@ -78,7 +78,8 @@
 
 #define USE_VCP
 #define USE_USART1
-#define SERIAL_PORT_COUNT 2
+#define USE_USART2
+#define SERIAL_PORT_COUNT 3
 
 #ifndef UART1_GPIO
 #define UART1_TX_PIN        GPIO_Pin_9  // PA9
@@ -88,6 +89,13 @@
 #define UART1_TX_PINSOURCE  GPIO_PinSource9
 #define UART1_RX_PINSOURCE  GPIO_PinSource10
 #endif
+
+#define UART2_TX_PIN        GPIO_Pin_10 // PB10
+#define UART2_RX_PIN        GPIO_Pin_11 // PB11
+#define UART2_GPIO_AF       GPIO_AF_7
+#define UART2_GPIO          GPIOB
+#define UART2_TX_PINSOURCE  GPIO_PinSource10
+#define UART2_RX_PINSOURCE  GPIO_PinSource11
 
 //define USE_I2C
 //define I2C_DEVICE (I2CDEV_2)
