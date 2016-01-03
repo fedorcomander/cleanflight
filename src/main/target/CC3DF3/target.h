@@ -23,6 +23,12 @@
 #define LED0_PIN    Pin_3
 #define LED0_PERIPHERAL RCC_AHBPeriph_GPIOB
 
+#define BEEPER
+#define BEEP_GPIO   GPIOA
+#define BEEP_PIN    Pin_2
+#define BEEP_PERIPHERAL RCC_AHBPeriph_GPIOA
+#define BEEPER_INVERTED
+
 #define USE_MPU_DATA_READY_SIGNAL
 #define ENSURE_MPU_DATA_READY_IS_LOW
 
@@ -78,24 +84,24 @@
 
 #define USE_VCP
 #define USE_USART1
-#define USE_USART2
+#define USE_USART3
 #define SERIAL_PORT_COUNT 3
 
-#ifndef UART1_GPIO
+//#ifndef UART1_GPIO
 #define UART1_TX_PIN        GPIO_Pin_9  // PA9
 #define UART1_RX_PIN        GPIO_Pin_10 // PA10
 #define UART1_GPIO          GPIOA
 #define UART1_GPIO_AF       GPIO_AF_7
 #define UART1_TX_PINSOURCE  GPIO_PinSource9
 #define UART1_RX_PINSOURCE  GPIO_PinSource10
-#endif
+//#endif
 
-#define UART2_TX_PIN        GPIO_Pin_10 // PB10
-#define UART2_RX_PIN        GPIO_Pin_11 // PB11
-#define UART2_GPIO_AF       GPIO_AF_7
-#define UART2_GPIO          GPIOB
-#define UART2_TX_PINSOURCE  GPIO_PinSource10
-#define UART2_RX_PINSOURCE  GPIO_PinSource11
+#define UART3_TX_PIN        GPIO_Pin_10 // PB10 (AF7)
+#define UART3_RX_PIN        GPIO_Pin_11 // PB11 (AF7)
+#define UART3_GPIO_AF       GPIO_AF_7
+#define UART3_GPIO          GPIOB
+#define UART3_TX_PINSOURCE  GPIO_PinSource10
+#define UART3_RX_PINSOURCE  GPIO_PinSource11
 
 //define USE_I2C
 //define I2C_DEVICE (I2CDEV_2)
@@ -111,27 +117,36 @@
 //define I2C2_SDA_PIN_SOURCE  GPIO_PinSource10
 //define I2C2_SDA_CLK_SOURCE  RCC_AHBPeriph_GPIOA
 
-//define USE_ADC
+#define USE_ADC
+#define BOARD_HAS_VOLTAGE_DIVIDER
 
-//define ADC_INSTANCE                ADC1
-//define ADC_AHB_PERIPHERAL          RCC_AHBPeriph_DMA1
-//define ADC_DMA_CHANNEL             DMA1_Channel1
+#define ADC_INSTANCE                ADC1
+#define ADC_DMA_CHANNEL             DMA1_Channel1
+#define ADC_AHB_PERIPHERAL          RCC_AHBPeriph_DMA1
 
-//define VBAT_ADC_GPIO               GPIOC
-//define VBAT_ADC_GPIO_PIN           GPIO_Pin_0
-//define VBAT_ADC_CHANNEL            ADC_Channel_6
 
-//define CURRENT_METER_ADC_GPIO      GPIOC
-//define CURRENT_METER_ADC_GPIO_PIN  GPIO_Pin_1
-//define CURRENT_METER_ADC_CHANNEL   ADC_Channel_7
+//#define CURRENT_METER_ADC_GPIO      GPIOB
+//#define CURRENT_METER_ADC_GPIO_PIN  GPIO_Pin_1
+//#define CURRENT_METER_ADC_CHANNEL   ADC_Channel_9
 
-//define RSSI_ADC_GPIO               GPIOC
-//define RSSI_ADC_GPIO_PIN           GPIO_Pin_2
-//define RSSI_ADC_CHANNEL            ADC_Channel_8
+#define VBAT_ADC_GPIO               GPIOA
+#define VBAT_ADC_GPIO_PIN           GPIO_Pin_0
+#define VBAT_ADC_CHANNEL            ADC_Channel_1
 
-//define EXTERNAL1_ADC_GPIO          GPIOC
-//define EXTERNAL1_ADC_GPIO_PIN      GPIO_Pin_3
-//define EXTERNAL1_ADC_CHANNEL       ADC_Channel_9
+#define RSSI_ADC_GPIO               GPIOA
+#define RSSI_ADC_GPIO_PIN           GPIO_Pin_1
+#define RSSI_ADC_CHANNEL            ADC_Channel_2
+
+#define USE_SERIAL_1WIRE
+
+// FlexPort (pin 21/22, TX/RX respectively):
+// Note, FlexPort has 10k pullups on both TX and RX
+// JST Pin3 TX - connect to external UART/USB RX
+#define S1W_TX_GPIO         GPIOB
+#define S1W_TX_PIN          GPIO_Pin_10
+// JST Pin4 RX - connect to external UART/USB TX
+#define S1W_RX_GPIO         GPIOB
+#define S1W_RX_PIN          GPIO_Pin_11
 
 //define GPS
 //define LED_STRIP
@@ -155,3 +170,8 @@
 #define GTUNE
 #define USE_SERVOS
 #define USE_CLI
+
+#define SPEKTRUM_BIND
+// USART3, PB11 (Flexport)
+#define BIND_PORT  GPIOB
+#define BIND_PIN   Pin_11
