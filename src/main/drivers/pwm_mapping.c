@@ -562,7 +562,7 @@ static const uint16_t * const hardwareMaps[] = {
     airPPM,
 };
 
-#ifdef CC3D
+#if defined(CC3D)
 static const uint16_t * const hardwareMapsBP6[] = {
     multiPWM_BP6,
     multiPPM_BP6,
@@ -592,7 +592,7 @@ pwmOutputConfiguration_t *pwmInit(drv_pwm_config_t *init)
     if (init->usePPM || init->useSerialRx)
         i++; // next index is for PPM
 
-#ifdef CC3D
+#if defined(CC3D)
 if (init->useBuzzerP6) {
 	setup = hardwareMapsBP6[i];
 } else {
@@ -763,7 +763,7 @@ if (init->useBuzzerP6) {
 #endif
 
         if (type == MAP_TO_PPM_INPUT) {
-#ifdef CC3D
+#if defined(CC3D) || defined (CC3DF3)
             if (init->useOneshot || isMotorBrushed(init->motorPwmRate)) {
                 ppmAvoidPWMTimerClash(timerHardwarePtr, TIM4);
             }

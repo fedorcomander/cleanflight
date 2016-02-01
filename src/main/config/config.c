@@ -299,12 +299,7 @@ void resetSerialConfig(serialConfig_t *serialConfig)
 
     serialConfig->portConfigs[0].functionMask = FUNCTION_MSP;
 
-#ifdef CC3D
-    // This allows MSP connection via USART & VCP so the board can be reconfigured.
-    serialConfig->portConfigs[1].functionMask = FUNCTION_MSP;
-#endif
-
-#ifdef CC3DF3
+#if defined(CC3D) || defined (CC3DF3)
     // This allows MSP connection via USART & VCP so the board can be reconfigured.
     serialConfig->portConfigs[1].functionMask = FUNCTION_MSP;
 #endif
@@ -471,7 +466,7 @@ static void resetConf(void)
 #endif
     masterConfig.servo_pwm_rate = 50;
     masterConfig.use_fast_pwm = 0;
-#ifdef CC3D
+#if defined(CC3D) || defined (CC3DF3)
     masterConfig.use_buzzer_p6 = 0;
 #endif
 
