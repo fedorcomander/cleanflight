@@ -33,7 +33,7 @@ void ws2811LedStripHardwareInit(void)
 
     uint16_t prescalerValue;
 
-#if defined(CC3D) || defined (CC3DF3)
+#if defined(CC3D)
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
     GPIO_StructInit(&GPIO_InitStructure);
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
