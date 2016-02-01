@@ -304,6 +304,11 @@ void resetSerialConfig(serialConfig_t *serialConfig)
     serialConfig->portConfigs[1].functionMask = FUNCTION_MSP;
 #endif
 
+#ifdef CC3DF3
+    // This allows MSP connection via USART & VCP so the board can be reconfigured.
+    serialConfig->portConfigs[1].functionMask = FUNCTION_MSP;
+#endif
+
     serialConfig->reboot_character = 'R';
 }
 
